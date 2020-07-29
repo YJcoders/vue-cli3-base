@@ -1,0 +1,86 @@
+{
+  "name": "vue3-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "cross-env NODE_ENV=production vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "analyzer": "cross-env use_analyzer=true npm run build",
+    "build:stats": "vue-cli-service build --json > stats.json"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.6.0",
+    "axios": "^0.19.1",
+    "core-js": "^2.6.5",
+    "cross-env": "^7.0.2",
+    "element-ui": "^2.11.1",
+    "husky": "^4.2.5",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "lint-staged": "^10.2.11",
+    "script-loader": "^0.7.2",
+    "style-loader": "^1.0.0",
+    "style-resources-loader": "^1.2.1",
+    "vue": "^2.6.10",
+    "vue-contextmenu": "^1.5.10",
+    "vue-router": "^3.1.2",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.0.1",
+    "@commitlint/config-conventional": "^9.0.1",
+    "@vue/cli-plugin-babel": "^3.10.0",
+    "@vue/cli-plugin-eslint": "^3.10.0",
+    "@vue/cli-service": "^3.10.0",
+    "babel-eslint": "^8.2.6",
+    "commitizen": "^4.1.2",
+    "compression-webpack-plugin": "^4.0.0",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack-bundle-analyzer": "^3.7.0",
+    "webpack-dev-server": "^3.7.2",
+    "webpackbar": "^4.0.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

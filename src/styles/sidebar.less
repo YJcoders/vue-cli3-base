@@ -1,0 +1,201 @@
+#app {
+  .sidebar-container {
+    transition: width 0.28s;
+    width:210px !important;
+    background-color: #545c64;
+    height: 100%;
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    height: calc(100% - 60px);
+    font-size: 0px;
+    z-index: 1001;
+    overflow-x: hidden;
+    overflow-y: auto;
+    // overflow: auto;
+
+    // reset element-ui css
+    .horizontal-collapse-transition {
+      transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+    }
+
+    .scrollbar-wrapper {
+      height: 97%;
+      padding-top: 10px;
+      overflow-x: hidden !important;
+    }
+
+    .el-scrollbar__bar.is-vertical {
+      right: 0px;
+    }
+
+    .el-scrollbar {
+      height: 100%;
+    }
+
+    &.has-logo {
+      .el-scrollbar {
+        height: calc(100% - 50px);
+      }
+    }
+
+    .is-horizontal {
+      display: none;
+    }
+
+    a {
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .svg-icon {
+      margin-right: 16px;
+    }
+
+    .el-menu {
+      border: none;
+      height: 100%;
+      width: 100% !important;
+      background-color: @sideBarColor;
+    }
+
+    // menu hover
+    .el-menu-item {
+      height: 42px;
+      line-height: 42px;
+      margin: 0 15px 0 12px;
+      padding-left: 8px !important;
+      color: #fff;
+      background-color: @sideBarColor;
+    }
+    .el-menu-item:hover {
+      border-radius: 4px;
+      color: @theme-color;
+      background-color: @hover !important;
+    }
+    .el-submenu__title {
+      height: 42px;
+      line-height: 42px;
+      margin: 0 15px 0 12px;
+      padding-left: 8px !important;
+      color: #fff;
+      background-color: @sideBarColor;
+    }
+    .submenu-title-noDropdown,
+    .el-submenu__title {
+      &:hover {
+        border-radius: 4px;
+        color: @theme-color !important;
+        background-color: @hover !important;
+      }
+    }
+    
+    & .nest-menu .el-submenu>.el-submenu__title,
+    & .el-submenu .el-menu-item {
+      min-width: 185px;
+      margin: 0 15px 0 12px;
+      padding-left: 20px !important;
+      &:hover {
+        border-radius: 4px;
+        color: @theme-color !important;
+        background-color: @hover !important;
+      }
+    }
+    .router-link-active > .el-menu-item {
+      border-radius: 4px;
+      color: #fff !important;
+      background-color: @theme-color !important;
+      i {
+        color: #fff !important;
+      }
+      &:hover {
+        border-radius: 4px;
+        color: #fff !important;
+        background-color: @theme-color !important;
+      }
+    }
+  }
+
+  // 菜单收起样式
+  .is-collapse {
+    width: 60px !important;
+
+    & .el-submenu__icon-arrow {
+      display: none;
+    }
+    & .el-tooltip {
+      padding: 0 6px !important;
+    }
+    & .el-menu-item {
+      padding: 0 12px !important;
+    }
+    & .el-submenu__title {
+      margin: 0 10px 0 12px !important;
+    }
+    & .is-active {
+      .el-submenu__title i {
+        color: @theme-color;
+      }
+    }
+    & .router-link-active {
+      & /deep/ .el-tooltip {
+        background-color: #545c64;
+        i {
+          color: @theme-color !important;
+        }
+      }
+    }
+  }
+
+  // .nest-menu .el-submenu>.el-submenu__title,
+  // .el-menu-item {
+  //   &:hover {
+  //     border-radius: 4px;
+  //     color: @theme-color !important;
+  //     background-color: @hover !important;
+  //   }
+  // }
+
+  .el-menu--collapse .el-menu .el-submenu {
+    min-width: @sideBarWidth !important;
+  }
+
+  .withoutAnimation {
+    .main-container,
+    .sidebar-container {
+      transition: none;
+    }
+  }
+}
+
+// when menu collapsed
+.el-menu--vertical {
+  &>.el-menu {
+    .svg-icon {
+      margin-right: 16px;
+    }
+  }
+
+  // the scroll bar appears when the subMenu is too long
+  >.el-menu--popup {
+    max-height: 100vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track-piece {
+      background: #d3dce6;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #99a9bf;
+      border-radius: 20px;
+    }
+  }
+
+}
+
