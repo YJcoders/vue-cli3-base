@@ -15,4 +15,14 @@ npm run serve
 npm run build
 ```
 
+### git commit 拦截
+```js
+// 删除package.json下的
+"husky": {
+  "hooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+  }
+},
+```
 
