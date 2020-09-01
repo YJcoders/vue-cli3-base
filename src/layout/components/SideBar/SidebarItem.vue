@@ -2,7 +2,7 @@
   <div class="menu-wrapper">
     <app-link v-if="hasOneShowingChild(item.children)" :to="resolvePath(item.path)">
       <el-menu-item :index="resolvePath(item.path)">
-        <i v-if="item.meta.icon" :class="item.meta.icon"></i>
+        <i v-if="item.meta && item.meta.icon" :class="item.meta && item.meta.icon"></i>
         <template slot="title">
           <span>{{ item.meta && item.meta.title }}</span>
         </template>
@@ -11,7 +11,7 @@
 
     <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
-        <i v-if="item.meta.icon" :class="item.meta.icon"></i>
+        <i v-if="item.meta && item.meta.icon" :class="item.meta && item.meta.icon"></i>
         <span v-if="!collapse">{{ item.meta && item.meta.title }}</span>
       </template>
       <span v-if="!collapse">{{ item.meta && item.meta.title }}</span>

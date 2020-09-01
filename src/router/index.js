@@ -11,7 +11,7 @@ files.keys().forEach(key => {
   routers.push(...router);
 });
 routers.sort((a, b) => a.sort ? a.sort - b.sort : -1);
-console.log(routers, 908);
+// console.log(routers, 908);
 
 const odinaryRoute = [
   {

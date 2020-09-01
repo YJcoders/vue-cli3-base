@@ -23,7 +23,8 @@ function addStyleResource(rule) {
 }
 
 module.exports = {
-  publicPath: isProduction ? '/vue/' : '/', // 根域上下文目录
+  // publicPath: isProduction ? '/vue/' : '/', // 根域上下文目录
+  publicPath: '',
   outputDir: 'dist', // 构建输出目录
   runtimeCompiler: true, // 运行时版本是否需要编译
   transpileDependencies: [], // 默认babel-loader忽略mode_modules，这里可增加例外的依赖包名
@@ -33,7 +34,17 @@ module.exports = {
     open: true,
     disableHostCheck: true,
     historyApiFallback: true, // vue-cli3 可不用配置
-    hotOnly: true
+    hotOnly: true,
+    proxy: {
+      '/api': {
+        target: 'https://mock.yonyoucloud.com/mock/10834', // 目标接口域名
+        changeOrigin: true, // 是否跨域
+        secure: true,
+        pathRewrite: {
+          '^/api': '' // 重写接口
+        }
+      }
+    }
   },
 
   chainWebpack: config => {

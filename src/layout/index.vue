@@ -1,12 +1,12 @@
 <template>
   <div class="app">
     <Header class="nav-bar" />
-    <side-bar :class="{'is-collapse': collapse}" @showCollapse="showCollapse" @hideCollapse="hideCollapse" />
+    <side-bar v-show="isSHowMenu" :class="{'is-collapse': collapse}" @showCollapse="showCollapse" @hideCollapse="hideCollapse" />
     <div id="container" class="main">
       <!-- <el-scrollbar style="height: 100%"> -->
-      <app-main class="main-container" :class="{'main-collapse': collapse}" />
+      <app-main class="main-container" :class="{'main-collapse': collapse}" :style="setShow" />
       <!-- </el-scrollbar> -->
-      <transition name="fade">
+      <transition name="slide-fade">
         <img
           v-show="isActive"
           class="collapse-box"
@@ -40,12 +40,24 @@ export default {
       showBackTop: false,
       // 主区域DOM
       // mainDom: null,
-      isCollapse: false,
+      isCollapse: false, // 折叠菜单
       isActive: false
     };
   },
   computed: {
-    ...mapGetters(['collapse'])
+    ...mapGetters(['collapse']),
+    // 菜单显隐控制
+    isSHowMenu() {
+      return this.$store.state.sideBar.isShow;
+    },
+    setShow() {
+      if (!this.isSHowMenu) {
+        return {
+          'margin-left': 0
+        };
+      }
+      return null;
+    }
   },
   mounted() {
     // 控制是否显示返回顶部按钮
@@ -88,6 +100,7 @@ export default {
       this.isActive = true;
     },
     hideCollapse() {
+      // if (this.timer) clearTimeout(this.timer);
       this.timer = setTimeout(() => {
         this.isActive = false;
       }, 1000);

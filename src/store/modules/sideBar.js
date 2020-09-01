@@ -1,7 +1,11 @@
 const state = {
+  isShow: true,
   collapse: false
 };
 const mutations = {
+  setSideShow: (state, val) => {
+    state.isShow = val;
+  },
   toggleSide: state => {
     state.collapse = !state.collapse;
   }
