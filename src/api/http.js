@@ -51,11 +51,9 @@ const handleError = (status, other) => {
   }
 };
 
-// 对返回数据统一处理，没有特殊要求，统一返回请求成功的数据，失败被拦截
-// 请求接口添加配置，可获取所有数据
-let isGetAllRes = false;
+// isGetAllRes 请求接口添加配置，可获取所有数据
 
-export default function Ajax(baseURL) {
+const Ajax = (baseURL) => {
   const $http = axios.create({
     baseURL,
     timeout: 30 * 1000,
@@ -67,11 +65,6 @@ export default function Ajax(baseURL) {
 
   // 添加请求拦截器
   $http.interceptors.request.use(config => {
-    if (config.isGetAllRes) {
-      isGetAllRes = true;
-    } else {
-      isGetAllRes = false;
-    }
     // token鉴权，每次请求都会携带token，验证是否有token，token是否过期
     // 存储token有存储在本地localStorage, 有存在状态管理里面（状态管理里面刷新就没了）
     const token = window.localStorage.getItem('token1');
@@ -96,7 +89,7 @@ export default function Ajax(baseURL) {
     // 剔除请求池中完成的请求
     // let uniqueCode = response.config.method.toLowerCase() + response.config.url
     // requestMap.delete(uniqueCode)
-    // console.log(response, 'respose')
+    const isGetAllRes = response.config.params && response.config.params.isGetAllRes;
     if (response.status === 200) {
       return isGetAllRes ? Promise.resolve(response) : Promise.resolve(response.data);
     } else {
@@ -113,5 +106,23 @@ export default function Ajax(baseURL) {
       message('网络似乎出现问题，请稍后重试');
     }
   });
+
+  // $http.interceptors.response.use(
+  // response => {
+  // IE 8-9
+  //   if (response.data == null && response.config.responseType === 'json' && response.request.responseText != null) {
+  //     try {
+  //       // eslint-disable-next-line no-param-reassign
+  //       response.data = JSON.parse(response.request.responseText);
+  //     } catch (e) {
+  //       // ignored
+  //     }
+  //   }
+  //   return response;
+  // }
+  // );
   return $http;
-}
+};
+
+const ajax = new Ajax();
+export default ajax;

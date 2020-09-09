@@ -1,20 +1,22 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import { odinaryRoute, ForbiddenRouter, UndefinedPage } from './router';
 import store from './store';
 import '@babel/polyfill';
 import App from './App.vue';
-import { odinaryRoute, ForbiddenRouter, UndefinedPage } from './router';
 import Axios from '@/api';
-import ElementUI from 'element-ui';
 import echarts from 'echarts';
+import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './styles/index.less';
+import storage from '@/utils/localStorage';
 
 Vue.use(Router);
 Vue.use(ElementUI);
 
 Vue.prototype.$axios = Axios;
 Vue.prototype.$echarts = echarts;
+Vue.prototype.$storage = storage;
 
 Vue.config.productionTip = false;
 

@@ -3,18 +3,14 @@
     <Header class="nav-bar" />
     <side-bar v-show="isSHowMenu" :class="{'is-collapse': collapse}" @showCollapse="showCollapse" @hideCollapse="hideCollapse" />
     <div id="container" class="main">
-      <!-- <el-scrollbar style="height: 100%"> -->
       <app-main class="main-container" :class="{'main-collapse': collapse}" :style="setShow" />
-      <!-- </el-scrollbar> -->
-      <transition name="slide-fade">
-        <img
-          v-show="isActive"
-          class="collapse-box"
-          :style="{left: isCollapse ? '48px' : '198px'}"
-          src="~@/assets/images/collapse.png" alt=""
-          @click="handleCollapse"
-        >
-      </transition>
+      <img
+        v-show="isActive"
+        class="collapse-box"
+        :style="{left: isCollapse ? '48px' : '198px'}"
+        src="~@/assets/images/collapse.png" alt=""
+        @click="handleCollapse"
+      >
 
     </div>
 
@@ -106,6 +102,7 @@ export default {
       }, 1000);
     },
     handleCollapse() {
+      this.isActive = false;
       this.isCollapse = !this.isCollapse;
       this.$store.commit('sideBar/toggleSide');
     }
@@ -130,21 +127,16 @@ export default {
     height: calc(100vh - 60px);
     box-sizing: border-box;
     overflow: auto;
-      .collapse-box {
-        position:absolute;
-        top: 50%;
-        left: 198px;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 60px;
-        cursor: pointer;
-      }
-      .fade-enter-active, .fade-leave-active {
-        transition: opacity .5s;
-      }
-      .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-        opacity: 0;
-      }
+    .collapse-box {
+      position:absolute;
+      top: 50%;
+      left: 198px;
+      transform: translateY(-50%);
+      transition: left .3s;
+      width: 40px;
+      height: 60px;
+      cursor: pointer;
+    }
   }
   .main-container {
     // width: 100%;

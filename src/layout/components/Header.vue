@@ -53,7 +53,7 @@ export default {
     },
     // 打开全屏方法
     openFullscreen(element) {
-      console.log(element.webkitRequestFullscreen);
+      console.log(element);
       if (element.requestFullscreen) {
         element.requestFullscreen();
       } else if (element.mozRequestFullScreen) {

@@ -45,7 +45,6 @@ export default {
     // console.log(123)
   },
   methods: {
-    ...mapMutations(['updateUserInfo']),
     login() {
       this.$refs.ruleForm.validate(valid => {
         if (!valid) return '';

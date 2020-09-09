@@ -1,4 +1,6 @@
 export default {
   menuList: [],
-  userInfo: {}
+  userInfo: {
+    name: ''
+  }
 };
